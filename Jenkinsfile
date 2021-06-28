@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        MainEnvConfig = 'someconfiguration2'
+        MainEnvConfig = 'someconfiguration'
         dotnet = '"C:\\Program Files\\dotnet\\dotnet.exe"'
     }
     stages {
@@ -32,24 +32,24 @@ pipeline {
         stage('Build') {
             steps {
                 dir("Calculator"){
-                    sh "${dotnet} build"
+                    
                 }
             }
         }
         stage('Test') {
             steps {
                  dir("CalculatorTests"){
-                    sh "${dotnet} test"
+                    
                 }
             }
         }
         stage('Clean') {
             steps {
                  dir("Calculator"){
-                    sh "${dotnet} clean"
+                    
                 }
                   dir("CalculatorTests"){
-                    sh "${dotnet} clean"
+                    
                 }
             }
         }
@@ -62,13 +62,13 @@ pipeline {
         }
         success
         {
-            mail to: 'kulik.piotr.it@gmail.com',
+            mail to: 'piotr.kulik@posti.com',
             subject: "build info",
             body: "build success"
         }
         failure
         {
-            echo "to bedzie wypisywane w razue faila"
+            echo "to bedzie wypisywane w razie faila"
         }
     }
 }
