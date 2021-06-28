@@ -30,14 +30,9 @@ pipeline {
             }
         }
         stage('Build') {
-                agent {
-                    docker {
-                image 'microsoft/dotnet:2.1-sdk'
-                args '-u root:root'
-                }
-            }
             steps {
                 dir("Calculator"){
+                    sh 'dotnet build Calculator.cs --configuration Release --no-restore'
                     
                 }
             }
