@@ -37,20 +37,8 @@ pipeline {
                         docker {
                     image 'microsoft/dotnet:2.1-sdk'
                     args '-u root:root'
-        }
-      }{
-            steps {
-                sh 'apt update'
-                sh 'apt install -y apt-transport-https'
-                sh 'echo Hi'
-                sh 'chmod a+rw -R .'
-                stash name: 'Jenkins-out', includes: 'Jenkins/out/**'
-
-                dir("Calculator"){
-                    sh "${dotnet} build"
-                }
-            }
-        }
+                        }
+                    }
         }
         stage('Test') {
             steps {
