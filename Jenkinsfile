@@ -1,8 +1,5 @@
 pipeline {
     agent any
-     options {
-        skipDefaultCheckout true
-    }
     environment {
         MainEnvConfig = 'someconfiguration2'
         dotnet = '"C:\\Program Files\\dotnet\\dotnet.exe"'
@@ -33,12 +30,11 @@ pipeline {
             }
         }
         stage('Build') {
-                    agent {
-                        docker {
-                    image 'microsoft/dotnet:2.1-sdk'
-                    args '-u root:root'
-                        }
-                    }
+            steps {
+                dir("Calculator"){
+                    sh "${dotnet} build"
+                }
+            }
         }
         stage('Test') {
             steps {
