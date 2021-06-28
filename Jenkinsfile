@@ -51,6 +51,7 @@ pipeline {
                 }
             }
         }
+        }
         stage('Test') {
             steps {
                  dir("CalculatorTests"){
