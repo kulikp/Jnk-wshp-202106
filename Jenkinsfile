@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        MainEnvConfig = 'someconfiguration'
+        MainEnvConfig = 'someconfiguration2'
         dotnet = '"C:\\Program Files\\dotnet\\dotnet.exe"'
     }
     stages {
