@@ -1,5 +1,8 @@
 pipeline {
     agent any
+     options {
+        skipDefaultCheckout true
+    }
     environment {
         MainEnvConfig = 'someconfiguration2'
         dotnet = '"C:\\Program Files\\dotnet\\dotnet.exe"'
@@ -29,8 +32,20 @@ pipeline {
                }
             }
         }
-        stage('Build') {
+        stage('Build') 
+                    agent {
+                        docker {
+                    image 'microsoft/dotnet:2.1-sdk'
+                    args '-u root:root'
+        }
+      }{
             steps {
+                sh 'apt update'
+                sh 'apt install -y apt-transport-https'
+                sh 'echo Hi'
+                sh 'chmod a+rw -R .'
+                stash name: 'Jenkins-out', includes: 'Jenkins/out/**'
+
                 dir("Calculator"){
                     sh "${dotnet} build"
                 }
