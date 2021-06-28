@@ -32,24 +32,24 @@ pipeline {
         stage('Build') {
             steps {
                 dir("Calculator"){
-                    bat "${dotnet} build"
+                    sh "${dotnet} build"
                 }
             }
         }
         stage('Test') {
             steps {
                  dir("CalculatorTests"){
-                    bat "${dotnet} test"
+                    sh "${dotnet} test"
                 }
             }
         }
         stage('Clean') {
             steps {
                  dir("Calculator"){
-                    bat "${dotnet} clean"
+                    sh "${dotnet} clean"
                 }
                   dir("CalculatorTests"){
-                    bat "${dotnet} clean"
+                    sh "${dotnet} clean"
                 }
             }
         }
