@@ -30,6 +30,12 @@ pipeline {
             }
         }
         stage('Build') {
+                agent {
+                    docker {
+                image 'microsoft/dotnet:2.1-sdk'
+                args '-u root:root'
+                }
+            }
             steps {
                 dir("Calculator"){
                     
@@ -62,9 +68,7 @@ pipeline {
         }
         success
         {
-            mail to: 'piotr.kulik@posti.com',
-            subject: "build info",
-            body: "build success"
+          echo "success - info zamiast maila, bo brak dostepu do tcp/25"
         }
         failure
         {
