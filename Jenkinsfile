@@ -32,7 +32,7 @@ pipeline {
                }
             }
         }
-        stage('Build') 
+        stage('Build') {
                     agent {
                         docker {
                     image 'microsoft/dotnet:2.1-sdk'
